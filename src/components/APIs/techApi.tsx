@@ -1,5 +1,5 @@
 const TechApi = () => {
-  return <div>tech api comes here</div>;
+  return <div>api for tech will appear here</div>;
 };
 
 export default TechApi;

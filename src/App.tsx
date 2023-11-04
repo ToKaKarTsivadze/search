@@ -11,7 +11,7 @@ import { SearchContext } from "./components/useContext/context";
 const queryClient = new QueryClient();
 
 function App() {
-  const [search, setSearch] = useState<string | null>(null);
+  const [search, setSearch] = useState("");
 
   return (
     <QueryClientProvider client={queryClient}>

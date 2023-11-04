@@ -1,8 +1,8 @@
 import { createContext } from "react";
 
 interface SearchContextValue {
-  search: string | null;
-  setSearch: React.Dispatch<React.SetStateAction<string | null>>;
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const SearchContext = createContext<undefined | SearchContextValue>(

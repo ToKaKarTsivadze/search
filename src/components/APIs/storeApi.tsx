@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
+import ImgMediaCard from "../card/card";
+import { Container, Grid } from "@mui/material";
 
 type Props = {
-  searchingFor: string | null;
+  searchingFor: string;
 };
 
 const StoreApi = ({ searchingFor }: Props) => {
@@ -18,28 +20,41 @@ const StoreApi = ({ searchingFor }: Props) => {
     };
   };
 
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryFn: () =>
       fetch("https://fakestoreapi.com/products").then((data) => data.json()),
     queryKey: ["storeApi"],
   });
 
-  console.log(error);
-
   if (isLoading) {
     return <div>loading...</div>;
   } else if (isError) {
     return <div>an error has occurred </div>;
-  } else
+  } else {
     return (
-      <div>
-        {searchingFor}
-        {data?.map((product: Product) => {
-          //returned data with cards should be here wrapped with mui grid
-          return <div>{product.rating.count}</div>;
-        })}
-      </div>
+      <Container sx={{ marginTop: "20px" }}>
+        <Grid container>
+          {data
+            ?.filter(
+              (item: Product) =>
+                item.title.includes(searchingFor) ||
+                item.description.includes(searchingFor)
+            )
+            .map((product: Product) => {
+              return (
+                <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
+                  {ImgMediaCard({
+                    title: product.title,
+                    description: product.description,
+                    url: product.image,
+                  })}
+                </Grid>
+              );
+            })}
+        </Grid>
+      </Container>
     );
+  }
 };
 
 export default StoreApi;

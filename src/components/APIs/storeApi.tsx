@@ -35,10 +35,8 @@ const StoreApi = ({ searchingFor }: Props) => {
       <Container sx={{ marginTop: "20px" }}>
         <Grid container>
           {data
-            ?.filter(
-              (item: Product) =>
-                item.title.includes(searchingFor) ||
-                item.description.includes(searchingFor)
+            ?.filter((item: Product) =>
+              item.title.toLowerCase().includes(searchingFor.toLowerCase())
             )
             .map((product: Product) => {
               return (

@@ -3,7 +3,7 @@ import Search from "./components/search";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TechApi from "./components/APIs/techApi";
 import StoreApi from "./components/APIs/storeApi";
-import PeopleApi from "./components/APIs/peopleApi";
+import TodoApi from "./components/APIs/todoApi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 import { SearchContext } from "./components/useContext/context";
@@ -25,7 +25,11 @@ function App() {
                 path="/store"
                 element={<StoreApi searchingFor={search} />}
               />
-              <Route path="/people" element={<PeopleApi />} />
+              ++++++++++++++++++++++
+              <Route
+                path="/todos"
+                element={<TodoApi searchingFor={search} />}
+              />
             </Routes>
           </BrowserRouter>
         </SearchContext.Provider>

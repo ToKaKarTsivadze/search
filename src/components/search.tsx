@@ -30,7 +30,7 @@ const Search = () => {
         <Link to="/store">
           <Button variant="contained">store</Button>
         </Link>
-        <Link to="/people">
+        <Link to="/todos">
           <Button variant="contained">people</Button>
         </Link>
       </Stack>

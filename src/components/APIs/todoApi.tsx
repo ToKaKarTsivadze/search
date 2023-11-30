@@ -1,5 +1,7 @@
-import { Box, Container, Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
+import Todo from "../components/todoList";
+import Loading from "../components/loading";
 
 type Props = {
   searchingFor: string;
@@ -15,17 +17,17 @@ type Product = {
 const TodoApi = ({ searchingFor }: Props) => {
   const { data, isLoading } = useQuery({
     queryFn: () =>
-      fetch("https://fakestoreapi.com/products").then((data) => data.json()),
-    queryKey: ["storeApi"],
+      fetch("https://jsonplaceholder.typicode.com/todos").then((data) =>
+        data.json()
+      ),
+    queryKey: ["todosApi"],
   });
 
   if (isLoading) {
-    return (
-      <Box>
-        <h1>wait bro, waiting todos</h1>
-      </Box>
-    );
+    return <Loading />;
   } else {
+    console.log(data);
+
     return (
       <Container sx={{ marginTop: "20px" }}>
         <Grid container>
@@ -33,10 +35,17 @@ const TodoApi = ({ searchingFor }: Props) => {
             ?.filter((item: Product) =>
               item.title.toLowerCase().includes(searchingFor.toLowerCase())
             )
-            .map((product: Product) => {
+            .map((todo: Product) => {
               return (
-                <Grid key={product.id} item xs={12} display={"flexStart"}>
-                  {<h5>{product.title}</h5>}
+                <Grid key={todo.id} item xs={12} display={"flexStart"}>
+                  {
+                    <Todo
+                      id={todo.id}
+                      userID={todo.userId}
+                      title={todo.title}
+                      completed={todo.completed}
+                    />
+                  }
                 </Grid>
               );
             })}

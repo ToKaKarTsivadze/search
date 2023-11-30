@@ -24,14 +24,14 @@ const Search = () => {
         spacing={2}
         direction="row"
       >
-        <Link to="/tech">
-          <Button variant="contained">tech</Button>
+        <Link to="/recipes">
+          <Button variant="contained">recipes</Button>
         </Link>
         <Link to="/store">
           <Button variant="contained">store</Button>
         </Link>
         <Link to="/todos">
-          <Button variant="contained">people</Button>
+          <Button variant="contained">Todos</Button>
         </Link>
       </Stack>
       <Input

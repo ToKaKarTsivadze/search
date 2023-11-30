@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import ImgMediaCard from "../card/card";
+import ImgMediaCard from "../components/card";
 import { Container, Grid } from "@mui/material";
+import Loading from "../components/loading";
 
 type Props = {
   searchingFor: string;
@@ -27,7 +28,7 @@ const StoreApi = ({ searchingFor }: Props) => {
   });
 
   if (isLoading) {
-    return <div>loading...</div>;
+    return <Loading />;
   } else if (isError) {
     return <div>an error has occurred </div>;
   } else {
